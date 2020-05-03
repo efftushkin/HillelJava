@@ -12,23 +12,23 @@ public class SimpleCalculator {
         BigDecimal num2 = null;
 
         do {
-            System.out.println("Please, input the first number");
+            System.out.println("Please input the first number");
             if (scanner.hasNextBigDecimal()) {
                 num1 = scanner.nextBigDecimal();
                 System.out.println("Your input " + num1.toPlainString() + " as the first number");
             } else {
-                System.out.println("Incorrect entry, exception " + scanner.nextLine() + ". You must enter numbers. Try again");
+                System.out.println("Incorrect entry, exception " + scanner.nextLine() + ". Please enter numbers. Try again");
             }
         }
         while (num1 == null);
 
         do {
-            System.out.println("Please, input the second number");
+            System.out.println("Please input the second number");
             if (scanner.hasNextBigDecimal()) {
                 num2 = scanner.nextBigDecimal();
-                System.out.println("Your input " + num2.toPlainString() + " as the second number.");
+                System.out.println("Your input " + num2.toPlainString() + " as the second number");
             } else {
-                System.out.println("Incorrect entry, exception " + scanner.nextLine() + ". You must enter numbers. Try again.");
+                System.out.println("Incorrect entry, exception " + scanner.nextLine() + ". Please enter numbers. Try again");
             }
         }
         while (num2 == null);
