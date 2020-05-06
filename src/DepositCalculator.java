@@ -53,9 +53,9 @@ public class DepositCalculator {
                 yearCount = scanner.nextInt();
 
                 if (yearCount <= 0) {
-                    System.out.println("Your input " + percent.toPlainString() + " as the count of years. Please try again");
+                    System.out.println("Your input " + yearCount + " as the count of years. Please try again");
                 } else {
-                    System.out.println("Your input " + percent.toPlainString() + " as the count of years");
+                    System.out.println("Your input " + yearCount + " as the count of years");
                 }
             } else {
                 System.out.println("Incorrect entry, exception " + scanner.next() + ". Please enter natural numbers. Try again");
