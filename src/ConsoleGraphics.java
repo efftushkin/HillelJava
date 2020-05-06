@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-
 public class ConsoleGraphics {
     public static void main(String[] args) {
         System.out.println("ConsoleGraphics: Welcome!");
