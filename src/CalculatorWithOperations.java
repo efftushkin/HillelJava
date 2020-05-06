@@ -4,13 +4,13 @@ import java.util.Scanner;
 
 public class CalculatorWithOperations {
     public static void main(String[] args) {
-        System.out.println("SimpleCalculator: Welcome!");
+        System.out.println("CalculatorWithOperations: Welcome!");
 
         Scanner scanner = new Scanner(System.in);
 
         BigDecimal num1 = null;
         BigDecimal num2 = null;
-        BigDecimal result = null;
+        BigDecimal result;
         char op = '#';
         boolean divByZero = false;
 
@@ -63,7 +63,11 @@ public class CalculatorWithOperations {
                     result = num1.divide(num2, 8, RoundingMode.HALF_UP);
                 } else {
                     divByZero = true;
+                    result = BigDecimal.ZERO;
                 }
+                break;
+            default:
+                result = BigDecimal.ZERO;
         }
 
         if (divByZero) {
@@ -79,7 +83,7 @@ public class CalculatorWithOperations {
 
         result = result.setScale(newScale, RoundingMode.HALF_UP);
 
-        System.out.println("Result: " + result.toPlainString());
+        System.out.println("Result: " + result.toPlainString() + " (" + num1.toPlainString() + " " + op + " " + num2.toPlainString() + " = " + result.toPlainString() + ")");
 
         scanner.close();
         System.exit(0);
