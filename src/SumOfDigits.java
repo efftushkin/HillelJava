@@ -8,7 +8,7 @@ public class SumOfDigits {
 
         int sum = GetSumOfDigits(inp);
 
-        System.out.println("The sum of digits of number" + inp + " is " + sum);
+        System.out.println("The sum of digits of number " + inp + " is " + sum);
 
         System.exit(0);
     }
@@ -19,7 +19,7 @@ public class SumOfDigits {
         if (num < 10) {
             return sum;
         } else {
-            return sum + GetSumOfDigits((num - sum) / 10);
+            return sum + GetSumOfDigits((num) / 10);
         }
     }
 
