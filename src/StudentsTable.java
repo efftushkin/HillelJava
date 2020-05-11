@@ -2,23 +2,150 @@ import java.util.Arrays;
 
 public class StudentsTable {
     public static void main(String[] args) {
-        String[] students = {"Иванов"};
+        String[] students = new String[1];
         int[][] ratings = new int[1][32];
 
-        addStudent(students, ratings, "Петров");
-        addStudent(students, ratings, "Сидоров");
+        //void addStudent(String name = "Иванов")
+        String name = "Иванов";
+
+        if (students[0] == null) {
+            students[0] = name;
+        } else {
+            String[] newStudents = new String[students.length + 1];
+            int[][] newRatings = new int[students.length + 1][32];
+
+            for (int i = 0; i < students.length; i++) {
+                newStudents[i] = students[i];
+                newRatings[i] = ratings[i];
+            }
+
+            newStudents[newStudents.length - 1] = name;
+
+            students = newStudents;
+            ratings = newRatings;
+        }
+        //addStudent(String name = "Петров")
+        name = "Петров";
+
+        if (students[0] == null) {
+            students[0] = name;
+        } else {
+            String[] newStudents = new String[students.length + 1];
+            int[][] newRatings = new int[students.length + 1][32];
+
+            for (int i = 0; i < students.length; i++) {
+                newStudents[i] = students[i];
+                newRatings[i] = ratings[i];
+            }
+
+            newStudents[newStudents.length - 1] = name;
+
+            students = newStudents;
+            ratings = newRatings;
+        }
+
+        int lessonNumber;
+
+        //Иванов
+        name = "Иванов";
+        lessonNumber = 1;
+        if (!AddRating(students, ratings, name, lessonNumber, 9)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+        lessonNumber = 33;
+        if (!AddRating(students, ratings, name, lessonNumber, 8)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+        lessonNumber = 31;
+        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+        lessonNumber = 5;
+        if (!AddRating(students, ratings, name, lessonNumber, 9)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+        lessonNumber = 1;
+        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+        //Петров
+        name = "Петров";
+        lessonNumber = -1;
+        if (!AddRating(students, ratings, name, lessonNumber, 8)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+        lessonNumber = 4;
+        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+        lessonNumber = 6;
+        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+        //Сидоров
+        name = "Сидоров";
+        lessonNumber = 10;
+        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+            System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
+        }
+
+        PrintStudents(students, ratings);
     }
 
-    public static void addStudent(String[] students, int[][] ratings, String name) {
-        String[] oldStudents = Arrays.copyOf(students, students.length);
+    public static boolean AddRating(String[] students, int[][] ratings, String name, int lessonNumber, int rating) {
+        int studentIndex = FindStudent(students, name);
 
-        students = new String[students.length + 1];
-        students = Arrays.copyOf(oldStudents, oldStudents.length);
-        students[students.length - 1] = name;
+        if (studentIndex >= 0) {
+            if (lessonNumber >= 0 && lessonNumber < ratings[studentIndex].length) {
+                ratings[studentIndex][lessonNumber - 1] = rating;
+                return true;
+            }
+        }
 
-        int[][] oldRatings = Arrays.copyOf(ratings, ratings.length);
+        return false;
+    }
 
-        ratings = new int[ratings.length + 1][32];
-        ratings = Arrays.copyOf(oldRatings, oldRatings.length);
+    public static int FindStudent(String[] students, String name) {
+        for (int i = 0; i < students.length; i++) {
+            if (students[i].equalsIgnoreCase(name)) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public static void PrintStudents(String[] students, int[][] ratings) {
+        if (students[0] == null) {
+            System.out.println("We don't have any students");
+        }
+
+        boolean haveRatings;
+        String delimiter;
+
+        System.out.println("Our Students' ratings:");
+
+        for (int i = 0; i < students.length; i++) {
+            System.out.print(students[i] + ":");
+
+            haveRatings = false;
+            delimiter = " ";
+
+            for (int j = 0; j < ratings[i].length; j++) {
+                if (ratings[i][j] != 0) {
+                    System.out.print(delimiter + "lesson " + (j + 1) + ": " + ratings[i][j]);
+
+                    haveRatings = true;
+                    delimiter = "; ";
+                }
+                if (haveRatings && j == ratings[i].length - 1) {
+                    System.out.print("\n");
+                }
+            }
+
+            if (!haveRatings) {
+                System.out.println("no ratings found");
+            }
+        }
     }
 }
