@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 public class StudentsTable {
     public static void main(String[] args) {
         String[] students = new String[1];
@@ -49,51 +47,51 @@ public class StudentsTable {
         //Иванов
         name = "Иванов";
         lessonNumber = 1;
-        if (!AddRating(students, ratings, name, lessonNumber, 9)) {
+        if (!addRating(students, ratings, name, lessonNumber, 9)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
         lessonNumber = 33;
-        if (!AddRating(students, ratings, name, lessonNumber, 8)) {
+        if (!addRating(students, ratings, name, lessonNumber, 8)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
         lessonNumber = 31;
-        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+        if (!addRating(students, ratings, name, lessonNumber, 10)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
         lessonNumber = 5;
-        if (!AddRating(students, ratings, name, lessonNumber, 9)) {
+        if (!addRating(students, ratings, name, lessonNumber, 9)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
         lessonNumber = 1;
-        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+        if (!addRating(students, ratings, name, lessonNumber, 10)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
         //Петров
         name = "Петров";
         lessonNumber = -1;
-        if (!AddRating(students, ratings, name, lessonNumber, 8)) {
+        if (!addRating(students, ratings, name, lessonNumber, 8)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
         lessonNumber = 4;
-        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+        if (!addRating(students, ratings, name, lessonNumber, 10)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
         lessonNumber = 6;
-        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+        if (!addRating(students, ratings, name, lessonNumber, 10)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
         //Сидоров
         name = "Сидоров";
         lessonNumber = 10;
-        if (!AddRating(students, ratings, name, lessonNumber, 10)) {
+        if (!addRating(students, ratings, name, lessonNumber, 10)) {
             System.out.println("Can't add rating for student " + name + ", lesson " + lessonNumber);
         }
 
-        PrintStudents(students, ratings);
+        printStudents(students, ratings);
     }
 
-    public static boolean AddRating(String[] students, int[][] ratings, String name, int lessonNumber, int rating) {
-        int studentIndex = FindStudent(students, name);
+    public static boolean addRating(String[] students, int[][] ratings, String name, int lessonNumber, int rating) {
+        int studentIndex = findStudent(students, name);
 
         if (studentIndex >= 0) {
             if (lessonNumber >= 0 && lessonNumber < ratings[studentIndex].length) {
@@ -105,7 +103,7 @@ public class StudentsTable {
         return false;
     }
 
-    public static int FindStudent(String[] students, String name) {
+    public static int findStudent(String[] students, String name) {
         for (int i = 0; i < students.length; i++) {
             if (students[i].equalsIgnoreCase(name)) {
                 return i;
@@ -115,7 +113,7 @@ public class StudentsTable {
         return -1;
     }
 
-    public static void PrintStudents(String[] students, int[][] ratings) {
+    public static void printStudents(String[] students, int[][] ratings) {
         if (students[0] == null) {
             System.out.println("We don't have any students");
         }
