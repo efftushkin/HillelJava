@@ -3,9 +3,9 @@ package Students;
 import java.util.Arrays;
 
 public class StudentsCourse {
-    String name;
-    int lessonsCount;
-    Student[] studentsArray;
+    private String name;
+    private int lessonsCount;
+    private Student[] studentsArray;
 
     public StudentsCourse() {
         this("Course", 32);
@@ -28,7 +28,7 @@ public class StudentsCourse {
         Student[] students = new Student[0];
 
         for (Student student : studentsArray) {
-            if (student.name.equalsIgnoreCase(name)) {
+            if (student.getName().equalsIgnoreCase(name)) {
                 students = Arrays.copyOf(students, students.length + 1);
                 students[students.length - 1] = student;
             }
@@ -76,7 +76,7 @@ public class StudentsCourse {
         Student[] newStudentsArray = new Student[studentsArray.length - students.length];
 
         for (int i = 0; i < studentsArray.length; i++) {
-            if (!studentsArray[i].name.equalsIgnoreCase(name)) {
+            if (!studentsArray[i].getName().equalsIgnoreCase(name)) {
                 newStudentsArray[i - deletedCount] = studentsArray[i];
             } else {
                 deletedCount++;

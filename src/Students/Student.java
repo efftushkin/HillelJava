@@ -1,9 +1,9 @@
 package Students;
 
 public class Student {
-    String name;
-    int[] marks;
-    boolean[] presence;
+    private String name;
+    private int[] marks;
+    private boolean[] presence;
 
     Student(String name) {
         this(name, 32);
@@ -25,6 +25,10 @@ public class Student {
         if (this.presence.length >= lessonNumber) {
             this.presence[lessonNumber - 1] = presence;
         }
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void printRatings() {
