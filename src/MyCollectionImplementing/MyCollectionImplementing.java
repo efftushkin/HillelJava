@@ -1,7 +1,5 @@
 package MyCollectionImplementing;
 
-import MyCollection.MyCollection;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;

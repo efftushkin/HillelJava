@@ -1,7 +1,5 @@
 package MyCollectionImplementing;
 
-import MyCollection.MyCollection;
-
 import java.math.BigDecimal;
 
 public class Main {
