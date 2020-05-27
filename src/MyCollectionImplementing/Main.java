@@ -1,6 +1,7 @@
 package MyCollectionImplementing;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -73,5 +74,15 @@ public class Main {
         myCollectionImplementing.add(2);
         System.out.println("Added 2: " + myCollectionImplementing.toString());
         System.out.println("Contains 2 and 3: " + myCollectionImplementing.containsAll(newMyCollectionImplementing));
+
+        Object[] array = new Object[] {1, 9, 15};
+        Object[] newArray = myCollectionImplementing.toArray(array);
+        System.out.println(Arrays.toString(newArray));
+        array = new Object[] {1, 9, 15, 22, 18};
+        newArray = myCollectionImplementing.toArray(array);
+        System.out.println(Arrays.toString(newArray));
+        array = new Object[] {1, 9, 15, 22, 18, -1, '*'};
+        newArray = myCollectionImplementing.toArray(array);
+        System.out.println(Arrays.toString(newArray));
     }
 }

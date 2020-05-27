@@ -89,7 +89,21 @@ public class MyCollectionImplementing implements Collection {
 
     @Override
     public Object[] toArray(Object[] a) {
-        return new Object[0];
+        if (a.length <= size) {
+            return toArray();
+        }
+
+        Object[] newArray = new Object[a.length];
+
+        int i = 0;
+        for (Object element : collection) {
+            if (element != null) {
+                newArray[i] = element;
+                i++;
+            }
+        }
+
+        return newArray;
     }
 
     @Override
