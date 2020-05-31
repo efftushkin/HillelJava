@@ -250,7 +250,7 @@ public class MyCollectionImplementing implements Collection {
             refreshMaxIndex();
         }
 
-        return true;
+        return isRemoved;
     }
 
     @Override
