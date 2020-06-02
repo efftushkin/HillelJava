@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) {
         LinkedList linkedList = new LinkedList();
 
-        System.out.println("myCollection contains 8: " + linkedList.contains(8));
+        System.out.println("Collection contains 8: " + linkedList.contains(8));
         System.out.println(linkedList.toString());
-        System.out.println("myCollection is empty: " + linkedList.isEmpty());
+        System.out.println("Collection is empty: " + linkedList.isEmpty());
 
         linkedList.add("First");
         linkedList.add(2);
@@ -18,14 +18,14 @@ public class Main {
         linkedList.add(new BigDecimal("5.55555"));
 
         System.out.println(linkedList);
-        System.out.println("myCollection is empty: " + linkedList.isEmpty());
+        System.out.println("Collection is empty: " + linkedList.isEmpty());
 
         System.out.println("Remove null: " + linkedList.remove(null));
         System.out.println("Remove Second: " + linkedList.remove("Second"));
         System.out.println("Remove 3.3: " + linkedList.remove(3.3));
 
         System.out.println(linkedList);
-        System.out.println("Size of myCollection: " + linkedList.size());
+        System.out.println("Size of collection: " + linkedList.size());
 
         linkedList.add("Wednesday");
         linkedList.add("Wednesday");
@@ -33,17 +33,17 @@ public class Main {
         linkedList.add("Wednesday");
         linkedList.add("Wednesday");
         System.out.println(linkedList);
-        System.out.println("Size of myCollection: " + linkedList.size());
+        System.out.println("Size of collection: " + linkedList.size());
 
         System.out.println("Remove Wednesday: " + linkedList.remove("Wednesday"));
         System.out.println(linkedList);
 
-        System.out.println("myCollection contains 8: " + linkedList.contains(8));
-        System.out.println("myCollection contains BigDecimal 5.55555: " + linkedList.contains(new BigDecimal("5.55555")));
+        System.out.println("Collection contains 8: " + linkedList.contains(8));
+        System.out.println("Collection contains BigDecimal 5.55555: " + linkedList.contains(new BigDecimal("5.55555")));
 
         linkedList.clear();
         System.out.println("Clear: " + linkedList);
-        System.out.println("Size of myCollection: " + linkedList.size());
+        System.out.println("Size of collection: " + linkedList.size());
 
         linkedList.add(1);
         linkedList.add(2);
@@ -57,7 +57,7 @@ public class Main {
 
         linkedList.retainAll(newLinkedList);
         System.out.println("Retain: 3, 2 of 1, 2, 3, 4, 5: " + linkedList);
-        System.out.println("Size of myCollection: " + linkedList.size());
+        System.out.println("Size of collection: " + linkedList.size());
 
         linkedList.add(4);
         linkedList.add(5);
