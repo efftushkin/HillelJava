@@ -93,17 +93,18 @@ public class MyCollectionImplementing implements Collection {
             return toArray();
         }
 
-        Object[] newArray = new Object[a.length];
-
         int i = 0;
         for (Object element : collection) {
             if (element != null) {
-                newArray[i] = element;
+                a[i] = element;
                 i++;
             }
         }
+        for (; i < a.length; i++) {
+            a[i] = null;
+        }
 
-        return newArray;
+        return a;
     }
 
     @Override
@@ -201,16 +202,13 @@ public class MyCollectionImplementing implements Collection {
 
     @Override
     public boolean removeAll(Collection collection) {
-        if (collection == null) {
+        if (collection == null || this.collection == null) {
             return false;
         }
 
         boolean isRemoved = false;
 
         for (int i = 0; i <= maxIndex; i++) {
-            if (this.collection == null) {
-                continue;
-            }
             if (collection.contains(this.collection[i])) {
                 this.collection[i] = null;
                 size--;
