@@ -1,7 +1,5 @@
 package LinkedList;
 
-import MyCollectionImplementing.MyCollectionImplementing;
-
 import java.math.BigDecimal;
 import java.util.Arrays;
 
