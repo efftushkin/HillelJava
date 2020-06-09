@@ -90,5 +90,22 @@ public class Main {
         for (Object element : linkedList) {
             System.out.println(element);
         }
+        linkedList.remove(1);
+        System.out.println("For each (removed 1):");
+        for (Object element : linkedList) {
+            System.out.println(element);
+        }
+        linkedList.remove(2);
+        System.out.println("For each (removed 2):");
+        for (Object element : linkedList) {
+            System.out.println(element);
+        }
+
+        System.out.println("Remove each :");
+        for (Object element : linkedList) {
+            linkedList.remove(element);
+            System.out.println("Removed " + element);
+        }
+        System.out.println(linkedList);
     }
 }

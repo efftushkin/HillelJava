@@ -67,7 +67,29 @@ public class MyCollectionImplementing implements Collection {
 
     @Override
     public Iterator iterator() {
-        return null;
+        return new Iterator() {
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index <= maxIndex;
+            }
+
+            @Override
+            public Object next() {
+                int currentIndex = index;
+
+                index++;
+
+                for (; index <= maxIndex; index++) {
+                    if (collection[index] != null) {
+                        break;
+                    }
+                }
+
+                return collection[currentIndex];
+            }
+        };
     }
 
     @Override

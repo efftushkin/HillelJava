@@ -84,5 +84,27 @@ public class Main {
         array = new Object[] {1, 9, 15, 22, 18, -1, '*'};
         newArray = myCollectionImplementing.toArray(array);
         System.out.println(Arrays.toString(newArray));
+
+        System.out.println("For each:");
+        for (Object element : myCollectionImplementing) {
+            System.out.println(element);
+        }
+        myCollectionImplementing.remove(1);
+        System.out.println("For each (removed 1):");
+        for (Object element : myCollectionImplementing) {
+            System.out.println(element);
+        }
+        myCollectionImplementing.remove(3);
+        System.out.println("For each (removed 3):");
+        for (Object element : myCollectionImplementing) {
+            System.out.println(element);
+        }
+
+        System.out.println("Remove each :");
+        for (Object element : myCollectionImplementing) {
+            myCollectionImplementing.remove(element);
+            System.out.println("Removed " + element);
+        }
+        System.out.println(myCollectionImplementing);
     }
 }
