@@ -87,7 +87,7 @@ public class Main {
         System.out.println(Arrays.toString(newArray));
 
         System.out.println("For each:");
-        for (Object element : array) {
+        for (Object element : linkedList) {
             System.out.println(element);
         }
     }

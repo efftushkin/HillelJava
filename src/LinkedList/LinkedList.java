@@ -356,8 +356,9 @@ public class LinkedList implements Collection {
 
         @Override
         public Object next() {
+            Object currentData = node.getData();
             node = node.getNext();
-            return node.getData();
+            return currentData;
         }
     }
 }
