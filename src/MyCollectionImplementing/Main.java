@@ -100,7 +100,7 @@ public class Main {
             System.out.println(element);
         }
 
-        System.out.println("Remove each :");
+        System.out.println("Remove each:");
         for (Object element : myCollectionImplementing) {
             myCollectionImplementing.remove(element);
             System.out.println("Removed " + element);
