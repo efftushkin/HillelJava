@@ -106,5 +106,10 @@ public class Main {
             System.out.println("Removed " + element);
         }
         System.out.println(myCollectionImplementing);
+
+        System.out.println("For each (empty collection):");
+        for (Object element : myCollectionImplementing) {
+            System.out.println(element);
+        }
     }
 }

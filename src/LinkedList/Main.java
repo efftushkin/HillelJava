@@ -107,5 +107,10 @@ public class Main {
             System.out.println("Removed " + element);
         }
         System.out.println(linkedList);
+
+        System.out.println("For each (empty list):");
+        for (Object element : linkedList) {
+            System.out.println(element);
+        }
     }
 }
