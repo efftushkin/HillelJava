@@ -1,6 +1,7 @@
 package LinkedList;
 
 import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Main {
@@ -84,5 +85,10 @@ public class Main {
         array = new Object[] {1, 9, 15, 22, 18, -1, '*'};
         newArray = linkedList.toArray(array);
         System.out.println(Arrays.toString(newArray));
+
+        System.out.println("For each:");
+        for (Object element : array) {
+            System.out.println(element);
+        }
     }
 }
