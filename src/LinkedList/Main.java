@@ -1,7 +1,6 @@
 package LinkedList;
 
 import java.math.BigDecimal;
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class Main {
