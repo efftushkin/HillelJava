@@ -111,7 +111,21 @@ public class LinkedList implements List {
 
     @Override
     public Iterator iterator() {
-        return new LinkedListIterator();
+        return new Iterator() {
+            private Node node = head;
+
+            @Override
+            public boolean hasNext() {
+                return node != null;
+            }
+
+            @Override
+            public Object next() {
+                Object currentData = node.data;
+                node = node.next;
+                return currentData;
+            }
+        };
     }
 
     @Override
@@ -483,23 +497,7 @@ public class LinkedList implements List {
         }
     }
 
-    private class LinkedListIterator implements Iterator {
-        private Node node = head;
-
-        @Override
-        public boolean hasNext() {
-            return node != null;
-        }
-
-        @Override
-        public Object next() {
-            Object currentData = node.data;
-            node = node.next;
-            return currentData;
-        }
-    }
-
-    private class LListIterator implements ListIterator {
+    private class LinkedListIterator implements ListIterator {
         private Node node = head;
 
 
