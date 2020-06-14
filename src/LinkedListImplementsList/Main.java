@@ -2,6 +2,9 @@ package LinkedListImplementsList;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -51,6 +54,20 @@ public class Main {
         linkedList.add(4);
         linkedList.add(5);
 
+        System.out.println("List: " + linkedList);
+        linkedList.push(33);
+        System.out.println("List (pushed 33): " + linkedList);
+        while (linkedList.size() != 0) {
+            System.out.println("pop: " + linkedList.pop());
+        }
+        System.out.println("Result after pop all: " + linkedList);
+
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+
         LinkedList newLinkedList = new LinkedList();
         newLinkedList.add(3);
         newLinkedList.add(2);
@@ -75,17 +92,15 @@ public class Main {
         System.out.println("Added 2: " + linkedList);
         System.out.println("Contains 2 and 3: " + linkedList.containsAll(newLinkedList));
 
-        Object[] array = new Object[] {1, 9, 15};
+        Object[] array = new Object[]{1, 9, 15};
         Object[] newArray = linkedList.toArray(array);
         System.out.println(Arrays.toString(newArray));
-        array = new Object[] {1, 9, 15, 22, 18};
+        array = new Object[]{1, 9, 15, 22, 18};
         newArray = linkedList.toArray(array);
         System.out.println(Arrays.toString(newArray));
-        array = new Object[] {1, 9, 15, 22, 18, -1, '*'};
+        array = new Object[]{1, 9, 15, 22, 18, -1, '*'};
         newArray = linkedList.toArray(array);
         System.out.println(Arrays.toString(newArray));
-
-        System.out.println("Get by index 2: " + linkedList.get(2));
 
         System.out.println("For each:");
         for (Object element : linkedList) {
@@ -102,6 +117,12 @@ public class Main {
             System.out.println(element);
         }
 
+        linkedList.add(4);
+        System.out.println("Added 4:");
+        for (Object element : linkedList) {
+            System.out.println(element);
+        }
+
         System.out.println("Remove each:");
         for (Object element : linkedList) {
             linkedList.remove(element);
@@ -109,9 +130,67 @@ public class Main {
         }
         System.out.println(linkedList);
 
-        System.out.println("For each (empty list):");
+        System.out.println("For each (empty list), begin:");
         for (Object element : linkedList) {
             System.out.println(element);
         }
+        System.out.println("For each (empty list), end");
+
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+        System.out.println("List: " + linkedList);
+
+        List subList = linkedList.subList(2, 4);
+        System.out.println("Sublist (2, 4): " + subList);
+
+        ListIterator iterator = linkedList.listIterator();
+        System.out.println("Forward iteration:");
+        while (iterator.hasNext()) {
+            System.out.println("[" + iterator.nextIndex() + "] " + iterator.next());
+        }
+
+        System.out.println("Backward iteration:");
+        iterator = linkedList.listIterator(linkedList.size() - 1);
+        while (iterator.hasPrevious()) {
+            System.out.println("[" + iterator.previousIndex() + "] " + iterator.previous());
+        }
+
+        System.out.println("Backward iteration, adding 2.2 before third element:");
+        boolean isAdded = false;
+        iterator = linkedList.listIterator(linkedList.size() - 1);
+        while (iterator.hasPrevious()) {
+            if (iterator.previousIndex() == 2 && !isAdded) {
+                iterator.add(2.2);
+                isAdded = true;
+                System.out.println("Added 2.2");
+            }
+
+            System.out.println("[" + iterator.previousIndex() + "] " + iterator.previous());
+        }
+
+        iterator = linkedList.listIterator();
+        System.out.println("Forward iteration:");
+        while (iterator.hasNext()) {
+            int nextIndex = iterator.nextIndex();
+
+            if (nextIndex == 2) {
+                iterator.set(2.5);
+                System.out.println("[" + nextIndex + "] -> 2.5");
+            }
+
+            System.out.println("[" + nextIndex + "] " + iterator.next());
+        }
+        System.out.println(linkedList);
+
+        iterator = linkedList.listIterator();
+        System.out.println("Removing all while forward iteration:");
+        while (iterator.hasNext()) {
+            System.out.println("Current index: " + iterator.nextIndex());
+            iterator.remove();
+        }
+        System.out.println(linkedList);
     }
 }

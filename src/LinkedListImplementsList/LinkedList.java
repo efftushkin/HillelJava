@@ -75,10 +75,11 @@ public class LinkedList implements List {
 
         Object object = head.data;
         head = head.next;
-        head.previous = null;
 
         if (head == null) {
             tail = null;
+        } else {
+            head.previous = null;
         }
 
         return object;
@@ -252,8 +253,13 @@ public class LinkedList implements List {
 
     @Override
     public void add(int index, Object element) {
-        if (index >= size || index < 0) {
+        if (index >= size) {
             add(element);
+            return;
+        }
+        if (index < 0) {
+            push(element);
+            return;
         }
 
         Node node = getNode(index);
@@ -312,17 +318,32 @@ public class LinkedList implements List {
 
     @Override
     public ListIterator listIterator() {
-        return null;
+        return new LinkedListIterator();
     }
 
     @Override
     public ListIterator listIterator(int index) {
-        return null;
+        return new LinkedListIterator(index);
     }
 
     @Override
     public List subList(int fromIndex, int toIndex) {
-        return null;
+        if (fromIndex > toIndex) {
+            return null;
+        }
+        if (fromIndex < 0) {
+            fromIndex = 0;
+        }
+        if (toIndex >= size) {
+            toIndex = size - 1;
+        }
+
+        List list = new LinkedList();
+
+        for (int i = fromIndex; i <= toIndex; i++) {
+            list.add(get(i));
+        }
+        return list;
     }
 
     @Override
@@ -498,7 +519,18 @@ public class LinkedList implements List {
     }
 
     private class LinkedListIterator implements ListIterator {
-        private Node node = head;
+        private Node node;
+        int index;
+
+        public LinkedListIterator() {
+            node = head;
+            index = 0;
+        }
+
+        public LinkedListIterator(int index) {
+            node = getNode(index);
+            this.index = index;
+        }
 
 
         @Override
@@ -510,6 +542,7 @@ public class LinkedList implements List {
         public Object next() {
             Object currentData = node.data;
             node = node.next;
+            index++;
             return currentData;
         }
 
@@ -522,32 +555,36 @@ public class LinkedList implements List {
         public Object previous() {
             Object currentData = node.data;
             node = node.previous;
+            index--;
             return currentData;
         }
 
         @Override
         public int nextIndex() {
-            return 0;
+            return index;
         }
 
         @Override
         public int previousIndex() {
-            return 0;
+            return index;
         }
 
         @Override
         public void remove() {
-
+            Node currentNode = node;
+            node = node.next;
+            removeFromList(currentNode);
         }
 
         @Override
         public void set(Object o) {
-
+            node.data = o;
         }
 
         @Override
         public void add(Object o) {
-
+            insertBefore(node, o);
+            index++;
         }
     }
 }

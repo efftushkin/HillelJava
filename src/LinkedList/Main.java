@@ -51,6 +51,20 @@ public class Main {
         linkedList.add(4);
         linkedList.add(5);
 
+        System.out.println("List: " + linkedList);
+        linkedList.push(33);
+        System.out.println("List (pushed 33): " + linkedList);
+        while (linkedList.size() != 0) {
+            System.out.println("pop: " + linkedList.pop());
+        }
+        System.out.println("Result after pop all: " + linkedList);
+
+        linkedList.add(1);
+        linkedList.add(2);
+        linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+
         LinkedList newLinkedList = new LinkedList();
         newLinkedList.add(3);
         newLinkedList.add(2);
@@ -96,6 +110,12 @@ public class Main {
         }
         linkedList.remove(2);
         System.out.println("For each (removed 2):");
+        for (Object element : linkedList) {
+            System.out.println(element);
+        }
+
+        linkedList.add(4);
+        System.out.println("Added 4:");
         for (Object element : linkedList) {
             System.out.println(element);
         }
