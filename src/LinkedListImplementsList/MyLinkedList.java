@@ -1,11 +1,8 @@
 package LinkedListImplementsList;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Iterator;
-import java.util.ListIterator;
+import java.util.*;
 
-public class LinkedList implements List {
+public class MyLinkedList implements List {
     private Node head = null;
     private Node tail = null;
     private int size = 0;
@@ -338,7 +335,7 @@ public class LinkedList implements List {
             toIndex = size - 1;
         }
 
-        List list = new LinkedList();
+        List list = new MyLinkedList();
 
         for (int i = fromIndex; i <= toIndex; i++) {
             list.add(get(i));
@@ -519,6 +516,7 @@ public class LinkedList implements List {
     }
 
     private class LinkedListIterator implements ListIterator {
+        private Node returned;
         private Node node;
         int index;
 
@@ -540,10 +538,10 @@ public class LinkedList implements List {
 
         @Override
         public Object next() {
-            Object currentData = node.data;
+            returned = node;
             node = node.next;
             index++;
-            return currentData;
+            return returned.data;
         }
 
         @Override
@@ -553,10 +551,10 @@ public class LinkedList implements List {
 
         @Override
         public Object previous() {
-            Object currentData = node.data;
+            returned = node;
             node = node.previous;
             index--;
-            return currentData;
+            return returned.data;
         }
 
         @Override
@@ -578,7 +576,7 @@ public class LinkedList implements List {
 
         @Override
         public void set(Object o) {
-            node.data = o;
+            returned.data = o;
         }
 
         @Override
