@@ -204,7 +204,7 @@ public class Main {
         myLinkedList.add("zeta");
         myLinkedList.add("beta");
         System.out.println("List: " + myLinkedList);
-        myLinkedList.sort(new NumberComparator());
+        myLinkedList.sort(new MyLinkedListComparator());
         System.out.println("List: " + myLinkedList);
     }
 }
