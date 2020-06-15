@@ -231,6 +231,23 @@ public class MyLinkedList implements List {
     }
 
     @Override
+    public void sort(Comparator c) {
+//      insertSort
+        Object tmp;
+        int j;
+
+        for (int i = 0; i < size; i++) {
+            tmp = get(i);
+
+            for (j = i - 1; j >= 0 && c.compare(get(j), tmp) > 0; j--) {
+                set(j + 1, get(j));
+            }
+
+            set(j + 1, tmp);
+        }
+    }
+
+    @Override
     public void clear() {
         head = null;
         tail = null;
