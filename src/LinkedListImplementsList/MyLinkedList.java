@@ -449,7 +449,7 @@ public class MyLinkedList implements List {
 
     @Override
     public Object[] toArray(Object[] a) {
-        if (a.length <= size) {
+        if (a.length < size) {
             return toArray();
         }
 
