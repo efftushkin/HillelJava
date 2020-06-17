@@ -1,7 +1,5 @@
 package BinaryTree;
 
-import LinkedListImplementsList.MyLinkedList;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
