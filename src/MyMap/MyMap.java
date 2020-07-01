@@ -8,7 +8,6 @@ public class MyMap implements Map {
     private Entry[] data = new Entry[NUM_BUCKETS];
     private int size = 0;
     private HashSet keys = new HashSet();
-    private HashSet values = new HashSet();
 
     private int getIndex(Object o) {
         return Math.abs(o.hashCode()) % NUM_BUCKETS;
@@ -104,12 +103,56 @@ public class MyMap implements Map {
 
     @Override
     public Object remove(Object key) {
+        if (key == null) {
+            throw new NullPointerException("Null keys are not permitted");
+        }
+
+        int index = getIndex(key);
+
+        Entry entry = data[index];
+        Entry previousEntry = null;
+
+        while (entry != null) {
+            if (entry.getKey().equals(key)) {
+                Object oldValue = entry.getValue();
+
+                if (previousEntry == null) {
+                    data[index] = entry.next;
+                } else {
+                    previousEntry.next = entry.next;
+                }
+
+                size--;
+                keys.remove(key);
+
+                return oldValue;
+            }
+
+            previousEntry = entry;
+            entry = entry.next;
+        }
+
         return null;
     }
 
     @Override
     public void putAll(Map m) {
+        if (m == null) {
+            throw new NullPointerException("Null map is not permitted");
+        }
+        if (m.containsKey(null)) {
+            throw new NullPointerException("Null keys are not permitted");
+        }
+        if (m.containsValue(null)) {
+            throw new NullPointerException("Null values are not permitted");
+        }
 
+        Set entrySet = m.entrySet();
+
+        for (Object entry : entrySet) {
+            Map.Entry e = (Map.Entry) entry;
+            put(e.getKey(), e.getValue());
+        }
     }
 
     @Override
@@ -130,12 +173,36 @@ public class MyMap implements Map {
 
     @Override
     public Collection values() {
-        return null;
+        ArrayList values = new ArrayList();
+
+        for (int i = 0; i < NUM_BUCKETS; i++) {
+            Entry entry = data[i];
+
+            while (entry != null) {
+                values.add(entry.getValue());
+
+                entry = entry.next;
+            }
+        }
+
+        return values;
     }
 
     @Override
     public Set<Entry> entrySet() {
-        return null;
+        HashSet entrySet = new HashSet();
+
+        for (int i = 0; i < NUM_BUCKETS; i++) {
+            Entry entry = data[i];
+
+            while (entry != null) {
+                entrySet.add(entry);
+
+                entry = entry.next;
+            }
+        }
+
+        return entrySet;
     }
 
     private static class Entry implements Map.Entry {
