@@ -10,7 +10,10 @@ public class MyLinkedList implements List {
     public void push(Object object) {
         Node oldHead = head;
         head = new Node(object, null, head);
-        oldHead.previous = head;
+
+        if (oldHead != null) {
+            oldHead.previous = head;
+        }
 
         size++;
 

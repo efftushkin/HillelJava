@@ -2,15 +2,23 @@ package MyLinkedList;
 
 import java.util.*;
 
+//This list does not permit null elements
 public class MyLinkedList<E> implements List<E> {
     private Node head = null;
     private Node tail = null;
     private int size = 0;
 
     public void push(E object) {
+        if (object == null) {
+            throw new NullPointerException();
+        }
+
         Node oldHead = head;
         head = new Node(object, null, head);
-        oldHead.previous = head;
+
+        if (oldHead != null) {
+            oldHead.previous = head;
+        }
 
         size++;
 
@@ -51,7 +59,7 @@ public class MyLinkedList<E> implements List<E> {
 
     private Node getNode(int index) {
         if (index >= size || index < 0) {
-            return null;
+            throw new IndexOutOfBoundsException();
         }
 
         Node node = head;
@@ -138,7 +146,7 @@ public class MyLinkedList<E> implements List<E> {
         Node currentNode = head;
 
         while (currentNode != null) {
-            arrayObject[i] = (Object) currentNode.data;
+            arrayObject[i] = currentNode.data;
 
             i++;
             currentNode = currentNode.next;
@@ -149,6 +157,10 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public boolean add(E o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+
         if (head == null) {
             head = new Node(o);
             tail = head;
@@ -167,7 +179,9 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
-        boolean isRemoved = false;
+        if (o == null) {
+            throw new NullPointerException();
+        }
 
         Node currentNode = head;
 
@@ -179,19 +193,19 @@ public class MyLinkedList<E> implements List<E> {
 
                 removeFromList(removeNode);
 
-                isRemoved = true;
+                return true;
             } else {
                 currentNode = currentNode.next;
             }
         }
 
-        return isRemoved;
+        return false;
     }
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
         if (c == null) {
-            return false;
+            throw new NullPointerException();
         }
         if (c.size() == 0) {
             return false;
@@ -207,15 +221,16 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
         if (c == null) {
-            return false;
+            throw new NullPointerException();
         }
+        if (index >= size() || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
         if (c.size() == 0) {
             return false;
         }
 
-        if (index >= size() || index < 0) {
-            return addAll(c);
-        }
 
         Node node = getNode(index);
 
@@ -228,7 +243,11 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public void sort(Comparator<? super E> c) {
-//      insertSort
+        if (c == null) {
+            throw new NullPointerException();
+        }
+
+        //InsertSort
         E tmp;
         int j;
 
@@ -254,22 +273,16 @@ public class MyLinkedList<E> implements List<E> {
     public E get(int index) {
         Node node = getNode(index);
 
-        if (node == null) {
-            return null;
-        }
-
         return node.data;
     }
 
     @Override
     public void add(int index, E element) {
-        if (index >= size) {
-            add(element);
-            return;
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
         }
-        if (index < 0) {
-            push(element);
-            return;
+        if (element == null) {
+            throw new NullPointerException();
         }
 
         Node node = getNode(index);
@@ -279,11 +292,11 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public E remove(int index) {
-        Node node = getNode(index);
-
-        if (node == null) {
-            return null;
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
         }
+
+        Node node = getNode(index);
 
         removeFromList(node);
 
@@ -292,6 +305,10 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public int indexOf(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+
         int index = 0;
 
         Node currentNode = head;
@@ -310,6 +327,10 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public int lastIndexOf(Object o) {
+        if (o == null) {
+            throw new NullPointerException();
+        }
+
         int index = size - 1;
 
         Node currentNode = tail;
@@ -333,19 +354,20 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public ListIterator<E> listIterator(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
         return new LinkedListIterator(index);
     }
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
         if (fromIndex > toIndex) {
-            return null;
+            throw new IllegalArgumentException();
         }
-        if (fromIndex < 0) {
-            fromIndex = 0;
-        }
-        if (toIndex >= size) {
-            toIndex = size - 1;
+        if (fromIndex < 0 || toIndex >= size) {
+            throw new IndexOutOfBoundsException();
         }
 
         List<E> list = new MyLinkedList<E>();
@@ -358,11 +380,14 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public E set(int index, E element) {
-        Node node = getNode(index);
-
-        if (node == null) {
-            return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
         }
+        if (element == null) {
+            throw new NullPointerException();
+        }
+
+        Node node = getNode(index);
 
         E oldData = node.data;
         node.data = element;
@@ -372,7 +397,7 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public boolean retainAll(Collection c) {
         if (c == null) {
-            return false;
+            throw new NullPointerException();
         }
 
         boolean isRemoved = false;
@@ -399,7 +424,7 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public boolean removeAll(Collection c) {
         if (c == null) {
-            return false;
+            throw new NullPointerException();
         }
 
         boolean isRemoved = false;
@@ -426,8 +451,9 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public boolean containsAll(Collection<?> c) {
         if (c == null) {
-            return false;
+            throw new NullPointerException();
         }
+
         if (c.size() == 0) {
             return false;
         }
@@ -443,6 +469,10 @@ public class MyLinkedList<E> implements List<E> {
 
     @Override
     public <T> T[] toArray(T[] a) {
+        if (a == null) {
+            throw new NullPointerException();
+        }
+
         Object[] arrayObject = new Object[size];
 
         int i = 0;
@@ -579,7 +609,7 @@ public class MyLinkedList<E> implements List<E> {
 
         @Override
         public int previousIndex() {
-            return index;
+            return index - 1;
         }
 
         @Override
