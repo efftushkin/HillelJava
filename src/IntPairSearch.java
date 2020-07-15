@@ -18,6 +18,7 @@ public class IntPairSearch {
             for (int j = i + 1; j < ARRAY_SIZE; j++) {
                 if (array[i] + array[j] == SEARCH_VALUE) {
                     System.out.println("a[" + i + "] + a[" + j + "] = " + array[i] + " + " + array[j] + " = " + SEARCH_VALUE);
+                    System.out.println("Indexes [" + i + ", " + j + "]");
 
                     found++;
                 }
