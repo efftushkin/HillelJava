@@ -32,6 +32,11 @@ public class GetPassword implements Callable<String> {
     }
 
     public String getPass(int deep, char[] chars, String pass, String hash, int startIndex, int endIndex) throws NoSuchAlgorithmException {
+        if (Thread.interrupted()) {
+//            System.out.println(Thread.currentThread().getName() + " is interrupted");
+            return "";
+        }
+
         if (deep == 0) {
             if (HashCheck.check(pass, hash)) {
                 return pass;
@@ -53,11 +58,7 @@ public class GetPassword implements Callable<String> {
         }
 
         for (; i < endI; i++) {
-            String newPass = pass + String.valueOf(chars[i]);
-
-//            if (HashCheck.check(newPass, hash)) {
-//                return newPass;
-//            }
+            String newPass = pass + chars[i];
 
             String password = getPass(deep, chars, newPass, hash, 0, 0);
 
