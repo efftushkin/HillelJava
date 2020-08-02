@@ -38,4 +38,3 @@ crashlytics-build.properties
 
 *.dat
 *.json
-/src/SecListMD5PasswordSearch/Resources/
