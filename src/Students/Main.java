@@ -1,5 +1,7 @@
 package Students;
 
+import GetPow.GetPow;
+
 public class Main {
     public static void main(String[] args) {
         StudentsCourse students = new StudentsCourse("Hillel Java Elementary", 32);
