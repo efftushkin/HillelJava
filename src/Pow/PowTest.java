@@ -1,6 +1,5 @@
 package Pow;
 
-import GetPow.GetPow;
 import org.junit.Assert;
 import org.junit.Test;
 
