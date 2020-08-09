@@ -1,6 +1,5 @@
 package SecListMD5PasswordSearch;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
